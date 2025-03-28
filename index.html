@@ -78,6 +78,9 @@
 <body class="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex flex-col justify-center items-center p-4" onload="playMusic()">
     <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl transition-transform hover:scale-105">
         <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Quiz sobre el Espacio Rural en España</h1>
+        <div id="score-container" class="mb-4 text-center text-gray-700">
+            Puntuación: <span id="score">0</span> puntos
+        </div>
         <div id="question-container" class="mb-6">
             </div>
         <div id="timer-container" class="mb-4 text-center text-gray-600">
@@ -164,6 +167,8 @@
         const messageDisplay = document.getElementById('message');
         const timerDisplay = document.getElementById('timer');
         const timerContainer = document.getElementById('timer-container');
+        const scoreDisplay = document.getElementById('score'); // Nuevo elemento para el marcador
+        const scoreContainer = document.getElementById('score-container');
 
         const fullResultsContainer = document.getElementById('full-results-container');
         const finalScoreFullDisplay = document.getElementById('final-score-full');
@@ -216,6 +221,7 @@
 
             if (selectedOption === currentQuestion.correctAnswer) {
                 score++;
+                scoreDisplay.textContent = score; // Actualizar el marcador
                 isCorrect = true;
                 playCorrectSound();
             }
