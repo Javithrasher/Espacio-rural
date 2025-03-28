@@ -315,15 +315,15 @@
 
             let message = "";
             if (score < 5) {
-                message = "¡Ohhhh eres un matao!";
+                message = "¡Ohhhh debes estudiar más!";
             } else if (score >= 5 && score <= 6) {
-                message = "¡No está mal, chaval!";
+                message = "¡Debes mejorar un poco!";
             } else if (score >= 7 && score <= 8) {
-                message = "¡Muy bien, colega!";
+                message = "¡Muy bien, buen resultado!";
             } else if (score >= 9 && score <= 10) {
-                message = "¡Perfecto! ¡Eres un genio!";
+                message = "¡Perfecto! ¿Sigue así!";
             } else if (score > 10) {
-                message = "¡Impresionante! ¡Eres el puto amo!"
+                message = "¡Impresionante!"
             }
           messageDisplay.textContent = message;
           playWinSound();
