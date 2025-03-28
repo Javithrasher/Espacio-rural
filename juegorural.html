@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz sobre el Espacio Rural en España</title>
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script>
+      // --- Sonidos ---
+      const correctSound = new Tone.Synth({ // Más agudo y corto
+          oscillator: { type: 'triangle' },
+          envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.1 }
+      }).toDestination();
+
+      const incorrectSound = new Tone.Synth({ // Más grave y largo
+            oscillator : {
+                type : 'sine'
+            },
+            envelope : {
+                attack : 0.005 ,
+                decay : 0.1 ,
+                sustain : 0.3 ,
+                release : 1.5
+            }
+      }).toDestination();
+
+      const winSound = new Tone.PluckSynth().toDestination(); // Sonido de victoria
+
+      // --- Música de fondo ---
+      const music = new Tone.Player("https://www.bensound.com/bensound-music/bensound-happyrock.mp3").toDestination(); // Reemplaza con la URL de tu música
+      music.loop = true;
+      music.volume.value = -10; // Ajusta el volumen
+
+      let isMusicPlaying = false; // Variable para controlar si la música está sonando
+
+      function playMusic() {
+          if (!isMusicPlaying) {
+              Tone.start(); // Asegurar que el contexto de audio se inicia
+              music.start();
+              isMusicPlaying = true;
+          }
+      }
+
+      function stopMusic() {
+          if (isMusicPlaying) {
+              music.stop();
+              isMusicPlaying = false;
+          }
+      }
+
+      function playCorrectSound() {
+          correctSound.triggerAttackRelease("C5", "16n"); // Más agudo
+      }
+
+      function playIncorrectSound() {
+          incorrectSound.triggerAttackRelease("G2", "2n"); // Más grave
+      }
+
+      function playWinSound() {
+           const synth = new Tone.Synth().toDestination();
+            const now = Tone.now();
+            synth.triggerAttackRelease("C4", "8n", now);
+            synth.triggerAttackRelease("E4", "8n", now + 0.2);
+            synth.triggerAttackRelease("G4", "8n", now + 0.4);
+            synth.triggerAttackRelease("C5", "1n", now + 0.6);
+      }
+    </script>
+</head>
+<body class="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex flex-col justify-center items-center p-4" onload="playMusic()">
+    <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl transition-transform hover:scale-105">
+        <h1 class="text-2xl font-semibold text-gray-800 mb-6 text-center">Quiz sobre el Espacio Rural en España</h1>
+        <div id="question-container" class="mb-6">
+            </div>
+        <div id="timer-container" class="mb-4 text-center text-gray-600">
+          Tiempo restante: <span id="timer">20</span> segundos
+        </div>
+        <button id="next-button" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md w-full transition-colors duration-300 ease-in-out hidden">
+            Siguiente Pregunta
+        </button>
+        <div id="results-container" class="hidden mt-6">
+            <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Resultados</h2>
+            <p class="text-lg text-gray-700 text-center mb-4">Tu puntuación: <span id="final-score">0</span> puntos</p>
+            <p id="message" class="text-xl font-semibold text-center text-green-600"></p>
+        </div>
+        <div id="full-results-container" class="hidden fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+            <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md text-center">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Resultados Finales</h2>
+                <p class="text-lg text-gray-700 mb-4">Tu puntuación: <span id="final-score-full">0</span> puntos</p>
+                <p id="message-full" class="text-xl font-semibold text-green-600 mb-6"></p>
+                <button id="restart-button" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md w-48 transition-colors duration-300 ease-in-out">
+                    Reiniciar Quiz
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const quizData = [
+            {
+                question: "1. ¿Cuál de los siguientes es un condicionante físico de la actividad agraria en España?",
+                options: ["Estructura agraria", "Poblamiento y hábitat rural", "Clima", "Innovaciones técnicas"],
+                correctAnswer: "Clima"
+            },
+            {
+                question: "2. ¿Qué tipo de explotación agraria predomina en el norte de la península y la Comunidad Valenciana?",
+                options: ["Latifundio", "Minifundio", "Explotación de tamaño medio", "Todas son correctas"],
+                correctAnswer: "Minifundio"
+            },
+            {
+                question: "3. ¿Cuál es el principal objetivo de la Política Agraria Común (PAC)?",
+                options: ["Fomentar el proteccionismo comercial", "Aumentar los rendimientos a cualquier coste", "Garantizar una renta adecuada a los agricultores y estabilizar los precios", "Regular el sistema de propiedad de la tierra"],
+                correctAnswer: "Garantizar una renta adecuada a los agricultores y estabilizar los precios"
+            },
+            {
+                question: "4. ¿Qué porcentaje aproximado de la población activa en España trabaja en actividades agrarias?",
+                options: ["1%", "4.5%", "10%", "20%"],
+                correctAnswer: "4.5%"
+            },
+            {
+                question: "5. ¿Cuál de los siguientes cultivos es típico de secano en España?",
+                options: ["Maíz", "Algodón", "Olivo", "Cítricos"],
+                correctAnswer: "Olivo"
+            },
+            {
+                question: "6. ¿En qué región de España es predominante el latifundio?",
+                options: ["Galicia", "País Vasco", "Andalucía occidental", "Cataluña"],
+                correctAnswer: "Andalucía occidental"
+            },
+            {
+                question: "7. ¿Qué tipo de ganadería supone la mayor parte de la producción ganadera en España?",
+                options: ["Bovina", "Ovina/Caprina", "Porcina", "Avícola"],
+                correctAnswer: "Porcina"
+            },
+            {
+                question: "8. ¿Cuál de las siguientes actividades se considera una nueva función del espacio rural?",
+                options: ["Agricultura", "Ganadería", "Explotación forestal", "Turismo rural"],
+                correctAnswer: "Turismo rural"
+            },
+            {
+                question: "9. ¿Cómo se llama el fondo europeo que financia la reforma de las explotaciones agrarias y políticas de desarrollo rural?",
+                options: ["FEOGA", "LEADER", "FEADER", "PAC"],
+                correctAnswer: "FEADER"
+            },
+             {
+                question: "10. ¿Qué tipo de hábitat rural es característico del paisaje agrario atlántico?",
+                options: ["Concentrado", "Disperso", "Mixto", "No tiene un hábitat definido"],
+                correctAnswer: "Disperso"
+            }
+        ];
+
+        const questionContainer = document.getElementById('question-container');
+        const nextButton = document.getElementById('next-button');
+        const resultsContainer = document.getElementById('results-container');
+        const finalScoreDisplay = document.getElementById('final-score');
+        const messageDisplay = document.getElementById('message');
+        const timerDisplay = document.getElementById('timer');
+        const timerContainer = document.getElementById('timer-container');
+
+        const fullResultsContainer = document.getElementById('full-results-container');
+        const finalScoreFullDisplay = document.getElementById('final-score-full');
+        const messageFullDisplay = document.getElementById('message-full');
+        const restartButton = document.getElementById('restart-button');
+
+
+        let currentQuestionIndex = 0;
+        let score = 0;
+        let userAnswers = [];
+        let timeLeft = 20;
+        let timerId;
+        let isMuted = false; // You can use this to track mute state if you add a mute button
+
+      function loadQuestion() {
+          const currentQuestion = quizData[currentQuestionIndex];
+          questionContainer.innerHTML = `
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">${currentQuestion.question}</h2>
+              <div class="space-y-3">
+                  ${currentQuestion.options.map((option, index) => `
+                      <button class="bg-gray-200 hover:bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded-md w-full text-left transition-colors duration-300 ease-in-out" data-option="${option}">
+                          ${option}
+                      </button>
+                  `).join('')}
+              </div>
+          `;
+          startTimer();
+          nextButton.classList.add('hidden');
+      }
+
+      function startTimer() {
+          timeLeft = 20;
+          timerDisplay.textContent = timeLeft;
+          clearInterval(timerId);
+          timerId = setInterval(() => {
+              timeLeft--;
+              timerDisplay.textContent = timeLeft;
+              if (timeLeft <= 0) {
+                  clearInterval(timerId);
+                  handleAnswer(null); // Treat as incorrect answer
+              }
+          }, 1000);
+      }
+
+        function handleAnswer(selectedOption) {
+            clearInterval(timerId);
+            const currentQuestion = quizData[currentQuestionIndex];
+            const answerButtons = document.querySelectorAll('.bg-gray-200'); // Select all answer buttons
+            let isCorrect = false;
+
+            if (selectedOption === currentQuestion.correctAnswer) {
+                score++;
+                isCorrect = true;
+                playCorrectSound();
+            }
+            else{
+                playIncorrectSound();
+            }
+
+            userAnswers.push(selectedOption); // Store the user's answer
+
+            answerButtons.forEach(button => {
+                const option = button.dataset.option;
+                if (option === currentQuestion.correctAnswer) {
+                    button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                    button.classList.add('bg-green-200', 'text-green-700'); // Correct answer
+                } else if (option === selectedOption) {
+                    button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                    button.classList.add('bg-red-200', 'text-red-700'); // Incorrect answer
+                } else {
+                  button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
+                  button.classList.add('bg-gray-100', 'text-gray-500', 'cursor-not-allowed'); // Correct answer
+                }
+                button.disabled = true; // Disable all buttons
+            });
+          if (currentQuestionIndex < quizData.length - 1) {
+                nextButton.classList.remove('hidden');
+            } else {
+                showResults();
+            }
+        }
+
+        function nextQuestion() {
+            currentQuestionIndex++;
+            loadQuestion();
+        }
+
+      function showResults() {
+          questionContainer.classList.add('hidden');
+          nextButton.classList.add('hidden');
+          resultsContainer.classList.remove('hidden');
+          finalScoreDisplay.textContent = score;
+
+            let message = "";
+            if (score < 5) {
+                message = "¡Ohhhh eres un matao!";
+            } else if (score >= 5 && score <= 6) {
+                message = "¡No está mal, chaval!";
+            } else if (score >= 7 && score <= 8) {
+                message = "¡Muy bien, colega!";
+            } else if (score >= 9 && score <= 10) {
+                message = "¡Perfecto! ¡Eres un genio!";
+            }
+          messageDisplay.textContent = message;
+          playWinSound();
+          showFullResults(message);
+      }
+
+      function showFullResults(message) {
+            fullResultsContainer.classList.remove('hidden');
+            finalScoreFullDisplay.textContent = score;
+            messageFullDisplay.textContent = message;
+      }
+
+        function restartQuiz() {
+            currentQuestionIndex = 0;
+            score = 0;
+            userAnswers = [];
+            resultsContainer.classList.add('hidden');
+            fullResultsContainer.classList.add('hidden');
+            loadQuestion();
+            playMusic();
+        }
+
+        questionContainer.addEventListener('click', (event) => {
+            const target = event.target;
+            if (target.tagName === 'BUTTON') {
+                handleAnswer(target.dataset.option);
+            }
+        });
+
+        nextButton.addEventListener('click', nextQuestion);
+        restartButton.addEventListener('click', restartQuiz);
+
+        loadQuestion(); // Start the quiz
+    </script>
+</body>
+</html>
