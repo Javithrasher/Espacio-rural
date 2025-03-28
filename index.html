@@ -16,24 +16,24 @@
     </style>
     <script>
       // --- Sonidos ---
-      const correctSound = new Tone.Synth({ // Más agudo y corto
-          oscillator: { type: 'triangle' },
-          envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.1 }
+      const correctSound = new Tone.Synth({
+          oscillator: { type: 'triangle' }, // Onda más suave
+          envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.3 } // Un poco más de release
       }).toDestination();
 
-      const incorrectSound = new Tone.Synth({ // Más grave y largo
+      const incorrectSound = new Tone.Synth({
             oscillator : {
-                type : 'sine'
+                type : 'sine' // Onda sinusoidal
             },
             envelope : {
                 attack : 0.005 ,
                 decay : 0.1 ,
-                sustain : 0.3 ,
-                release : 1.5
+                sustain : 0.2 , // Sustain más corto
+                release : 0.5  // Release más corto
             }
       }).toDestination();
 
-      const winSound = new Tone.PluckSynth().toDestination(); // Sonido de victoria
+      const winSound = new Tone.PluckSynth().toDestination();
 
       // --- Música de fondo ---
       const music = new Tone.Player("https://www.bensound.com/bensound-music/bensound-happyrock.mp3").toDestination(); // Reemplaza con la URL de tu música
@@ -58,20 +58,20 @@
       }
 
       function playCorrectSound() {
-          correctSound.triggerAttackRelease("C5", "16n"); // Más agudo
+          correctSound.triggerAttackRelease("C6", "8n"); // Nota más aguda y corta
       }
 
       function playIncorrectSound() {
-          incorrectSound.triggerAttackRelease("G2", "2n"); // Más grave
+          incorrectSound.triggerAttackRelease("G2", "4n"); // Nota más grave y corta
       }
 
       function playWinSound() {
-           const synth = new Tone.Synth().toDestination();
+            const synth = new Tone.Synth().toDestination();
             const now = Tone.now();
-            synth.triggerAttackRelease("C4", "8n", now);
-            synth.triggerAttackRelease("E4", "8n", now + 0.2);
-            synth.triggerAttackRelease("G4", "8n", now + 0.4);
-            synth.triggerAttackRelease("C5", "1n", now + 0.6);
+            synth.triggerAttackRelease("C5", "8n", now);
+            synth.triggerAttackRelease("E5", "8n", now + 0.2);
+            synth.triggerAttackRelease("G5", "8n", now + 0.4);
+            synth.triggerAttackRelease("C6", "1n", now + 0.6);
       }
     </script>
 </head>
@@ -157,6 +157,56 @@
                 question: "10. ¿Qué tipo de hábitat rural es característico del paisaje agrario atlántico?",
                 options: ["Concentrado", "Disperso", "Mixto", "No tiene un hábitat definido"],
                 correctAnswer: "Disperso"
+            },
+            {
+                question: "11. La mayor superficie de regadío se dedica a ...",
+                options: ["Cereales", "Hortalizas", "Legumbres", "Frutales"],
+                correctAnswer: "Cereales"
+            },
+            {
+                question: "12. ¿Cuál es la Comunidad autónoma que produce más vino?",
+                options: ["Castilla y León", "Castilla-La Mancha", "Andalucía", "La Rioja"],
+                correctAnswer: "Castilla-La Mancha"
+            },
+            {
+                question: "13. ¿Cuál de las siguientes comunidades autónomas tiene mayor superficie dedicada a la agricultura?",
+                options: ["Galicia", "País Vasco", "Andalucía", "Asturias"],
+                correctAnswer: "Andalucía"
+            },
+            {
+                question: "14. ¿Qué estructura agraria predomina en los paisajes de montaña?",
+                options: ["Minifundio", "Latifundio", "Ambos por igual", "Mesofundios"],
+                correctAnswer: "Minifundio"
+            },
+            {
+                question: "15. ¿Cuál de los siguientes productos es característico de la agricultura de regadío en el sureste de España?",
+                options: ["Cereales", "Olivo", "Frutas y hortalizas", "Viñedo"],
+                correctAnswer: "Frutas y hortalizas"
+            },
+            {
+                question: "16. ¿Qué tipo de ganadería es predominante en las zonas de montaña del norte de España?",
+                options: ["Porcina", "Ovina/Caprina", "Bovina", "Avícola"],
+                correctAnswer: "Bovina"
+            },
+            {
+                question: "17. ¿Cuál de las siguientes actividades forestales es más común en España?",
+                options: ["Tala de árboles para madera", "Recolección de setas", "Extracción de resina", "Cultivo de árboles para biomasa"],
+                correctAnswer: "Tala de árboles para madera"
+            },
+            {
+                question: "18. Según el texto, ¿Cuál es el uso agrario mayoritario en los paisajes del norte?",
+                options: ["Turismo de sol y playa", "Ganadería", "Agricultura", "Explotación Forestal"],
+                correctAnswer: "Ganadería"
+            },
+            {
+                question: "19. ¿Cuál de los siguientes es un ejemplo de producto con Denominación de Origen Protegida (DOP) en España?",
+                options: ["Coca-Cola", "Patatas fritas", "Jamón ibérico", "Hamburguesas"],
+                correctAnswer: "Jamón ibérico"
+            },
+            {
+                question: "20. ¿Qué impacto negativo puede tener la intensificación de la agricultura?",
+                options: ["Aumento de la biodiversidad", "Reducción de la contaminación del agua", "Pérdida de suelo y contaminación del agua", "Mejora de la calidad del aire"],
+                correctAnswer: "Pérdida de suelo y contaminación del agua"
             }
         ];
 
@@ -220,8 +270,8 @@
             let isCorrect = false;
 
             if (selectedOption === currentQuestion.correctAnswer) {
-                score++;
-                scoreDisplay.textContent = score; // Actualizar el marcador
+                score += 0.5; // Sumar 0.5 puntos por respuesta correcta
+                scoreDisplay.textContent = score.toFixed(1); // Actualizar el marcador con 1 decimal
                 isCorrect = true;
                 playCorrectSound();
             }
@@ -261,7 +311,7 @@
           questionContainer.classList.add('hidden');
           nextButton.classList.add('hidden');
           resultsContainer.classList.remove('hidden');
-          finalScoreDisplay.textContent = score;
+          finalScoreDisplay.textContent = score.toFixed(1); // Mostrar la puntuación final con 1 decimal
 
             let message = "";
             if (score < 5) {
@@ -272,6 +322,8 @@
                 message = "¡Muy bien, colega!";
             } else if (score >= 9 && score <= 10) {
                 message = "¡Perfecto! ¡Eres un genio!";
+            } else if (score > 10) {
+                message = "¡Impresionante! ¡Eres el puto amo!"
             }
           messageDisplay.textContent = message;
           playWinSound();
@@ -280,7 +332,7 @@
 
       function showFullResults(message) {
             fullResultsContainer.classList.remove('hidden');
-            finalScoreFullDisplay.textContent = score;
+            finalScoreFullDisplay.textContent = score.toFixed(1);  // Mostrar la puntuación final con 1 decimal
             messageFullDisplay.textContent = message;
       }
 
@@ -290,7 +342,7 @@
             userAnswers = [];
             resultsContainer.classList.add('hidden');
             fullResultsContainer.classList.add('hidden');
-            loadQuestion();
+            loadQuestion(); // Llamada a loadQuestion() para cargar las preguntas
             playMusic();
         }
 
@@ -308,3 +360,4 @@
     </script>
 </body>
 </html>
+
