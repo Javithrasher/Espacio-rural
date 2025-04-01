@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
+<!-- saved from url=(0052)file:///C:/Users/Javi%20Er/Downloads/quizmusica.html -->
+<html lang="es"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quiz sobre el Espacio Rural en España</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+    <script src="./Quiz  el Espacio Rural en España_files/saved_resource"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com/">
+    <link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
+    <link href="./Quiz  el Espacio Rural en España_files/css2" rel="stylesheet">
+    <script src="./Quiz  el Espacio Rural en España_files/Tone.js.descarga"></script>
     <style>
         body {
             font-family: 'Inter', sans-serif;
@@ -17,34 +17,36 @@
     <script>
       // --- Sonidos ---
       const correctSound = new Tone.Synth({
-          oscillator: { type: 'triangle' }, // Onda más suave
-          envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.3 } // Un poco más de release
+          oscillator: { type: 'triangle' },
+          envelope: { attack: 0.001, decay: 0.1, sustain: 0, release: 0.3 }
       }).toDestination();
 
       const incorrectSound = new Tone.Synth({
             oscillator : {
-                type : 'sine' // Onda sinusoidal
+                type : 'sine'
             },
             envelope : {
                 attack : 0.005 ,
                 decay : 0.1 ,
-                sustain : 0.2 , // Sustain más corto
-                release : 0.5  // Release más corto
+                sustain : 0.2 ,
+                release : 0.5
             }
       }).toDestination();
 
       const winSound = new Tone.PluckSynth().toDestination();
 
       // --- Música de fondo ---
-      const music = new Tone.Player("https://www.bensound.com/bensound-music/bensound-happyrock.mp3").toDestination(); // Reemplaza con la URL de tu música
-      music.loop = true;
-      music.volume.value = -10; // Ajusta el volumen
+      const music = new Tone.Player({
+          url: "https://www.cjoint.com/doc/25_03/OCDr3LlaRn4_GOLAZO-1-.mp3",
+          loop: true,
+          volume: -10
+      }).toDestination();
 
-      let isMusicPlaying = false; // Variable para controlar si la música está sonando
+      let isMusicPlaying = false;
 
       function playMusic() {
           if (!isMusicPlaying) {
-              Tone.start(); // Asegurar que el contexto de audio se inicia
+              Tone.start();
               music.start();
               isMusicPlaying = true;
           }
@@ -58,11 +60,11 @@
       }
 
       function playCorrectSound() {
-          correctSound.triggerAttackRelease("C6", "8n"); // Nota más aguda y corta
+          correctSound.triggerAttackRelease("C6", "8n");
       }
 
       function playIncorrectSound() {
-          incorrectSound.triggerAttackRelease("G2", "4n"); // Nota más grave y corta
+          incorrectSound.triggerAttackRelease("G2", "4n");
       }
 
       function playWinSound() {
@@ -74,34 +76,54 @@
             synth.triggerAttackRelease("C6", "1n", now + 0.6);
       }
     </script>
-</head>
+<style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.16 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}.fixed{position:fixed}.inset-0{inset:0px}.mb-4{margin-bottom:1rem}.mb-6{margin-bottom:1.5rem}.mt-6{margin-top:1.5rem}.flex{display:flex}.hidden{display:none}.h-20{height:5rem}.min-h-screen{min-height:100vh}.w-20{width:5rem}.w-48{width:12rem}.w-full{width:100%}.max-w-2xl{max-width:42rem}.max-w-md{max-width:28rem}.cursor-not-allowed{cursor:not-allowed}.flex-col{flex-direction:column}.items-center{align-items:center}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.space-y-3 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-md{border-radius:0.375rem}.border-2{border-width:2px}.border-blue-600{--tw-border-opacity:1;border-color:rgb(37 99 235 / var(--tw-border-opacity, 1))}.bg-black{--tw-bg-opacity:1;background-color:rgb(0 0 0 / var(--tw-bg-opacity, 1))}.bg-blue-500{--tw-bg-opacity:1;background-color:rgb(59 130 246 / var(--tw-bg-opacity, 1))}.bg-gray-100{--tw-bg-opacity:1;background-color:rgb(243 244 246 / var(--tw-bg-opacity, 1))}.bg-indigo-500{--tw-bg-opacity:1;background-color:rgb(99 102 241 / var(--tw-bg-opacity, 1))}.bg-white{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-gray-200{--tw-bg-opacity:1;background-color:rgb(229 231 235 / var(--tw-bg-opacity, 1))}.bg-green-200{--tw-bg-opacity:1;background-color:rgb(187 247 208 / var(--tw-bg-opacity, 1))}.bg-red-200{--tw-bg-opacity:1;background-color:rgb(254 202 202 / var(--tw-bg-opacity, 1))}.bg-opacity-75{--tw-bg-opacity:0.75}.bg-gradient-to-r{background-image:linear-gradient(to right, var(--tw-gradient-stops))}.from-green-400{--tw-gradient-from:#4ade80 var(--tw-gradient-from-position);--tw-gradient-to:rgb(74 222 128 / 0) var(--tw-gradient-to-position);--tw-gradient-stops:var(--tw-gradient-from), var(--tw-gradient-to)}.to-blue-500{--tw-gradient-to:#3b82f6 var(--tw-gradient-to-position)}.p-4{padding:1rem}.p-8{padding:2rem}.px-3{padding-left:0.75rem;padding-right:0.75rem}.px-4{padding-left:1rem;padding-right:1rem}.py-1{padding-top:0.25rem;padding-bottom:0.25rem}.py-2{padding-top:0.5rem;padding-bottom:0.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-2xl{font-size:1.5rem;line-height:2rem}.text-lg{font-size:1.125rem;line-height:1.75rem}.text-xl{font-size:1.25rem;line-height:1.75rem}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-semibold{font-weight:600}.text-blue-600{--tw-text-opacity:1;color:rgb(37 99 235 / var(--tw-text-opacity, 1))}.text-gray-600{--tw-text-opacity:1;color:rgb(75 85 99 / var(--tw-text-opacity, 1))}.text-gray-700{--tw-text-opacity:1;color:rgb(55 65 81 / var(--tw-text-opacity, 1))}.text-gray-800{--tw-text-opacity:1;color:rgb(31 41 55 / var(--tw-text-opacity, 1))}.text-green-600{--tw-text-opacity:1;color:rgb(22 163 74 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-gray-500{--tw-text-opacity:1;color:rgb(107 114 128 / var(--tw-text-opacity, 1))}.text-green-700{--tw-text-opacity:1;color:rgb(21 128 61 / var(--tw-text-opacity, 1))}.text-red-700{--tw-text-opacity:1;color:rgb(185 28 28 / var(--tw-text-opacity, 1))}.shadow-xl{--tw-shadow:0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);--tw-shadow-colored:0 20px 25px -5px var(--tw-shadow-color), 0 8px 10px -6px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-transform{transition-property:transform;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-300{transition-duration:300ms}.ease-in-out{transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1)}.hover\:scale-105:hover{--tw-scale-x:1.05;--tw-scale-y:1.05;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}.hover\:bg-blue-600:hover{--tw-bg-opacity:1;background-color:rgb(37 99 235 / var(--tw-bg-opacity, 1))}.hover\:bg-indigo-600:hover{--tw-bg-opacity:1;background-color:rgb(79 70 229 / var(--tw-bg-opacity, 1))}.hover\:bg-gray-300:hover{--tw-bg-opacity:1;background-color:rgb(209 213 219 / var(--tw-bg-opacity, 1))}</style></head>
 <body class="bg-gradient-to-r from-green-400 to-blue-500 min-h-screen flex flex-col justify-center items-center p-4" onload="playMusic()">
     <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-2xl transition-transform hover:scale-105">
         <div class="flex justify-between items-center mb-6">
             <h1 class="text-2xl font-semibold text-gray-800 text-center">Quiz sobre el Espacio Rural en España</h1>
-            <img src="https://blogsaverroes.juntadeandalucia.es/ieslucussolis/files/2023/09/Lucus-logo_clipdrop-background-removal-1024x1024.png" alt="Logo del Quiz" class="w-20 h-20 rounded-full">
+            <img src="./Quiz  el Espacio Rural en España_files/Lucus-logo_clipdrop-background-removal-1024x1024.png" alt="Logo del Quiz" class="w-20 h-20 rounded-full">
         </div>
         <div id="score-container" class="mb-4 text-center">
-            <span class="text-gray-700 font-medium">Puntuación: </span><span id="score" class="text-xl font-bold text-blue-600">0</span> puntos
+            <span class="text-gray-700 font-medium">Puntuación: </span><span id="score" class="text-xl font-bold text-blue-600 rounded-md px-3 py-1 bg-gray-100 border-2 border-blue-600">9.0</span> puntos
         </div>
         <div id="question-container" class="mb-6">
-            </div>
+              <h2 class="text-xl font-semibold text-gray-800 mb-4">1. ¿Cuál de los siguientes es un condicionante físico de la actividad agraria en España?</h2>
+              <div class="space-y-3">
+                  
+                      <button class="text-gray-700 font-semibold py-2 px-4 rounded-md w-full text-left transition-colors duration-300 ease-in-out bg-gray-100 text-gray-500 cursor-not-allowed" data-option="Estructura agraria" disabled="">
+                          Estructura agraria
+                      </button>
+                  
+                      <button class="text-gray-700 font-semibold py-2 px-4 rounded-md w-full text-left transition-colors duration-300 ease-in-out bg-gray-100 text-gray-500 cursor-not-allowed" data-option="Poblamiento y hábitat rural" disabled="">
+                          Poblamiento y hábitat rural
+                      </button>
+                  
+                      <button class="text-gray-700 font-semibold py-2 px-4 rounded-md w-full text-left transition-colors duration-300 ease-in-out bg-green-200 text-green-700" data-option="Clima" disabled="">
+                          Clima
+                      </button>
+                  
+                      <button class="text-gray-700 font-semibold py-2 px-4 rounded-md w-full text-left transition-colors duration-300 ease-in-out bg-gray-100 text-gray-500 cursor-not-allowed" data-option="Innovaciones técnicas" disabled="">
+                          Innovaciones técnicas
+                      </button>
+                  
+              </div>
+          </div>
         <div id="timer-container" class="mb-4 text-center text-gray-600">
-          Tiempo restante: <span id="timer">20</span> segundos
+          Tiempo restante: <span id="timer">0</span> segundos
         </div>
-        <button id="next-button" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md w-full transition-colors duration-300 ease-in-out hidden">
+        <button id="next-button" class="bg-indigo-500 hover:bg-indigo-600 text-white font-semibold py-2 px-4 rounded-md w-full transition-colors duration-300 ease-in-out">
             Siguiente Pregunta
         </button>
-        <div id="results-container" class="hidden mt-6">
+        <div id="results-container" class="mt-6 hidden">
             <h2 class="text-2xl font-semibold text-gray-800 mb-4 text-center">Resultados</h2>
-            <p class="text-lg text-gray-700 text-center mb-4">Tu puntuación: <span id="final-score">0</span> puntos</p>
-            <p id="message" class="text-xl font-semibold text-center text-green-600"></p>
+            <p class="text-lg text-gray-700 text-center mb-4">Tu puntuación: <span id="final-score">9.0</span> puntos</p>
+            <p id="message" class="text-xl font-semibold text-center text-green-600">¡Perfecto! ¿Sigue así!</p>
         </div>
-        <div id="full-results-container" class="hidden fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+        <div id="full-results-container" class="fixed inset-0 bg-black bg-opacity-75 flex justify-center items-center hidden">
             <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md text-center">
                 <h2 class="text-2xl font-semibold text-gray-800 mb-4">Resultados Finales</h2>
-                <p class="text-lg text-gray-700 mb-4">Tu puntuación: <span id="final-score-full">0</span> puntos</p>
-                <p id="message-full" class="text-xl font-semibold text-green-600 mb-6"></p>
+                <p class="text-lg text-gray-700 mb-4">Tu puntuación: <span id="final-score-full">9.0</span> puntos</p>
+                <p id="message-full" class="text-xl font-semibold text-green-600 mb-6">¡Perfecto! ¿Sigue así!</p>
                 <button id="restart-button" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 px-4 rounded-md w-48 transition-colors duration-300 ease-in-out">
                     Reiniciar Quiz
                 </button>
@@ -220,7 +242,7 @@
         const messageDisplay = document.getElementById('message');
         const timerDisplay = document.getElementById('timer');
         const timerContainer = document.getElementById('timer-container');
-        const scoreDisplay = document.getElementById('score'); // Nuevo elemento para el marcador
+        const scoreDisplay = document.getElementById('score');
         const scoreContainer = document.getElementById('score-container');
 
         const fullResultsContainer = document.getElementById('full-results-container');
@@ -234,7 +256,7 @@
         let userAnswers = [];
         let timeLeft = 20;
         let timerId;
-        let isMuted = false; // You can use this to track mute state if you add a mute button
+        let isMuted = false;
 
       function loadQuestion() {
           const currentQuestion = quizData[currentQuestionIndex];
@@ -261,7 +283,7 @@
               timerDisplay.textContent = timeLeft;
               if (timeLeft <= 0) {
                   clearInterval(timerId);
-                  handleAnswer(null); // Treat as incorrect answer
+                  handleAnswer(null);
               }
           }, 1000);
       }
@@ -269,12 +291,12 @@
         function handleAnswer(selectedOption) {
             clearInterval(timerId);
             const currentQuestion = quizData[currentQuestionIndex];
-            const answerButtons = document.querySelectorAll('.bg-gray-200'); // Select all answer buttons
+            const answerButtons = document.querySelectorAll('.bg-gray-200');
             let isCorrect = false;
 
             if (selectedOption === currentQuestion.correctAnswer) {
-                score += 0.5; // Sumar 0.5 puntos por respuesta correcta
-                scoreDisplay.textContent = score.toFixed(1); // Actualizar el marcador con 1 decimal
+                score += 0.5;
+                scoreDisplay.textContent = score.toFixed(1);
                 isCorrect = true;
                 playCorrectSound();
             }
@@ -282,21 +304,21 @@
                 playIncorrectSound();
             }
 
-            userAnswers.push(selectedOption); // Store the user's answer
+            userAnswers.push(selectedOption);
 
             answerButtons.forEach(button => {
                 const option = button.dataset.option;
                 if (option === currentQuestion.correctAnswer) {
                     button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                    button.classList.add('bg-green-200', 'text-green-700'); // Correct answer
+                    button.classList.add('bg-green-200', 'text-green-700');
                 } else if (option === selectedOption) {
                     button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                    button.classList.add('bg-red-200', 'text-red-700'); // Incorrect answer
+                    button.classList.add('bg-red-200', 'text-red-700');
                 } else {
                   button.classList.remove('bg-gray-200', 'hover:bg-gray-300');
-                  button.classList.add('bg-gray-100', 'text-gray-500', 'cursor-not-allowed'); // Correct answer
+                  button.classList.add('bg-gray-100', 'text-gray-500', 'cursor-not-allowed');
                 }
-                button.disabled = true; // Disable all buttons
+                button.disabled = true;
             });
           if (currentQuestionIndex < quizData.length - 1) {
                 nextButton.classList.remove('hidden');
@@ -314,7 +336,7 @@
           questionContainer.classList.add('hidden');
           nextButton.classList.add('hidden');
           resultsContainer.classList.remove('hidden');
-          finalScoreDisplay.textContent = score.toFixed(1); // Mostrar la puntuación final con 1 decimal
+          finalScoreDisplay.textContent = score.toFixed(1);
 
             let message = "";
             if (score < 5) {
@@ -335,7 +357,7 @@
 
       function showFullResults(message) {
             fullResultsContainer.classList.remove('hidden');
-            finalScoreFullDisplay.textContent = score.toFixed(1);  // Mostrar la puntuación final con 1 decimal
+            finalScoreFullDisplay.textContent = score.toFixed(1);
             messageFullDisplay.textContent = message;
       }
 
@@ -345,8 +367,8 @@
             userAnswers = [];
             resultsContainer.classList.add('hidden');
             fullResultsContainer.classList.add('hidden');
-            questionContainer.classList.remove('hidden'); // Mostrar el contenedor de preguntas
-            loadQuestion(); // Cargar la primera pregunta
+            questionContainer.classList.remove('hidden');
+            loadQuestion();
             playMusic();
         }
 
@@ -360,8 +382,9 @@
         nextButton.addEventListener('click', nextQuestion);
         restartButton.addEventListener('click', restartQuiz);
 
-        loadQuestion(); // Start the quiz
+        loadQuestion();
     </script>
-</body>
-</html>
 
+
+
+</body></html>
